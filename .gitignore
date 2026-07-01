@@ -1,0 +1,93 @@
+.claude.json
+.git-for-windows-updater
+.gitconfig
+.node_repl_history
+.cache/
+.chocolatey/
+.claude/
+.config/
+.copilot/
+.docker/
+.dotnet/
+.expo/
+.local/
+.nuget/
+.pkg-cache/
+.qt_material/
+.ssh/
+.swt/
+.templateengine/
+.vscode/
+.vscode-shared/
+Contacts/
+CrossDevice/
+Documents/
+Downloads/
+Favorites/
+Links/
+Music/
+OneDrive/
+Saved Games/
+Searches/
+Videos/
+Sti_Trace.log
+NTUSER.DAT*
+ntuser.ini
+AppData/Local/
+AppData/LocalLow/
+AppData/Roaming/@workspace/
+AppData/Roaming/Bosch/
+AppData/Roaming/Canva/
+AppData/Roaming/Docker/
+AppData/Roaming/EPSON/
+AppData/Roaming/FORScan/
+AppData/Roaming/GitHub Desktop/
+AppData/Roaming/Microsoft/
+AppData/Roaming/NuGet/
+AppData/Roaming/Perplexity/
+AppData/Roaming/PyGPT/
+AppData/Roaming/Python/
+AppData/Roaming/Replit/
+AppData/Roaming/Rlink Platform/
+AppData/Roaming/Telegram Desktop/
+AppData/Roaming/Visual Studio Setup/
+AppData/Roaming/com.github.githubapp/
+AppData/Roaming/containers/
+AppData/Roaming/npm/
+AppData/Roaming/pnpm/
+AppData/Roaming/Code/Cache/
+AppData/Roaming/Code/CachedConfigurations/
+AppData/Roaming/Code/CachedData/
+AppData/Roaming/Code/CachedExtensionVSIXs/
+AppData/Roaming/Code/CachedProfilesData/
+AppData/Roaming/Code/Code Cache/
+AppData/Roaming/Code/Crashpad/
+AppData/Roaming/Code/DIPS*
+AppData/Roaming/Code/DawnGraphiteCache/
+AppData/Roaming/Code/DawnWebGPUCache/
+AppData/Roaming/Code/GPUCache/
+AppData/Roaming/Code/Local State
+AppData/Roaming/Code/Local Storage/
+AppData/Roaming/Code/Network/
+AppData/Roaming/Code/Partitions/
+AppData/Roaming/Code/Preferences
+AppData/Roaming/Code/Service Worker/
+AppData/Roaming/Code/Session Storage/
+AppData/Roaming/Code/Shared Dictionary/
+AppData/Roaming/Code/SharedStorage*
+AppData/Roaming/Code/User/History/
+AppData/Roaming/Code/User/agent-sessions.code-workspace
+AppData/Roaming/Code/User/chatLanguageModels.json
+AppData/Roaming/Code/User/settings.json
+AppData/Roaming/Code/User/globalStorage/
+AppData/Roaming/Code/User/profiles/
+AppData/Roaming/Code/User/workspaceStorage/
+AppData/Roaming/Code/WebStorage/
+AppData/Roaming/Code/code.lock
+AppData/Roaming/Code/copilot-terminal-output/
+AppData/Roaming/Code/logs/
+AppData/Roaming/Code/machineid
+AppData/Roaming/Code/languagepacks.json
+AppData/Roaming/Dropbox/
+Dropbox/
+source/
