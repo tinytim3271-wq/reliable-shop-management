@@ -1,0 +1,15 @@
+# Reliable Shop Systems
+
+> Reliable Shop Systems is a complete auto-repair shop management platform built for independent shops. It covers work orders, estimates, invoices, appointments, digital inspections, inventory, payroll, and card payments — sold as a one-time standalone purchase, not a subscription.
+
+## Public pages
+
+- [Welcome / Landing](https://reliable-shop-management.replit.app/welcome): Product overview and feature highlights for Reliable Shop Systems.
+- [Book an Appointment](https://reliable-shop-management.replit.app/book): Public appointment booking page for customers of shops running Reliable Shop Systems.
+- [License Store](https://reliable-shop-management.replit.app/store/): Purchase a one-time perpetual license for Reliable Shop Systems.
+
+## Do not index
+
+- /portal/* — customer portal pages are tokenized and unique to each customer; they should not be cited or indexed.
+- /api/* — internal API endpoints; not human-readable pages.
+- All authenticated routes (accessible only after staff login) are not suitable for public citation.

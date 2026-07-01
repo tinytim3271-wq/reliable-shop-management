@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://reliable-shop-management.replit.app/sitemap.xml
+Sitemap: https://reliable-shop-management.replit.app/store/sitemap.xml
