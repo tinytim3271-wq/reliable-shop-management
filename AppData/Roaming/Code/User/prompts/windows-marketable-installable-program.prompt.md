@@ -1,6 +1,6 @@
 ---
 description: "Turn a product idea into a market-ready Windows app"
-name: "Marketable Installable Program"
+name: "Windows Marketable Installable Program"
 argument-hint: "Describe the product idea, target users, platform, and constraints"
 agent: "agent"
 ---

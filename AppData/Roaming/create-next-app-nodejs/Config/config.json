@@ -1,0 +1,13 @@
+{
+	"preferences": {
+		"typescript": true,
+		"linter": "eslint",
+		"eslint": true,
+		"reactCompiler": true,
+		"tailwind": true,
+		"srcDir": true,
+		"app": true,
+		"importAlias": "@/*",
+		"agentsMd": true
+	}
+}
