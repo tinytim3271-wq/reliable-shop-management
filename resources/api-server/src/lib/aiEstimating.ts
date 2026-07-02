@@ -3,7 +3,7 @@ import { openai } from "@workspace/integrations-openai-ai-server";
 import { round2 } from "./ledger";
 
 const MODEL = "gpt-5.4";
-const REQUEST_OPTIONS = { timeout: 60_000, maxRetries: 2 } as const;
+const REQUEST_OPTIONS = { timeout: 15_000, maxRetries: 0 } as const;
 
 export const ESTIMATE_DISCLAIMER =
   "AI-generated estimate. Verify parts, prices, and labor times against your shop data before quoting the customer.";

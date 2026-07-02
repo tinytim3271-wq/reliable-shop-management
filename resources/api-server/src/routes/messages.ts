@@ -509,9 +509,10 @@ router.post("/messages/:id/send", async (req, res): Promise<void> => {
         body: existing.body,
         attachments,
       });
+      const providerLabel = result.provider === "smtp" ? "SMTP" : "Resend";
       deliveryNote = result.id
-        ? `Delivered via Resend (id: ${result.id}).`
-        : "Delivered via Resend.";
+        ? `Delivered via ${providerLabel} (id: ${result.id}).`
+        : `Delivered via ${providerLabel}.`;
     } catch (err) {
       // Persist the failure reason so the outbox can surface it and staff know
       // to retry. Status stays "approved" so the Send button works as a retry.

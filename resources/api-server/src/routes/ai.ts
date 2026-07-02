@@ -20,7 +20,9 @@ import { matchCatalogPart } from "../lib/partMatch";
 const router: IRouter = Router();
 
 const MODEL = "gpt-5.4";
-const REQUEST_OPTIONS = { timeout: 60_000, maxRetries: 2 } as const;
+// Keep cloud calls short so offline fallback kicks in quickly when internet/
+// provider access is unavailable.
+const REQUEST_OPTIONS = { timeout: 15_000, maxRetries: 0 } as const;
 
 // AI calls are slow and cost provider credits, so bound them per IP even though
 // the routes already sit behind the authenticated, permission-gated boundary.
@@ -38,6 +40,24 @@ const ASSISTANT_DISCLAIMER =
   "AI-generated guidance. Verify against service information and proper testing before performing any repair.";
 const OFFLINE_ASSISTANT_DISCLAIMER =
   "Offline assistant mode. Guidance is generated locally with rule-based logic and should be verified by a qualified technician.";
+
+function isProviderConnectivityError(err: unknown): boolean {
+  const msg =
+    err instanceof Error
+      ? err.message.toLowerCase()
+      : typeof err === "string"
+        ? err.toLowerCase()
+        : "";
+
+  return (
+    msg.includes("connection") ||
+    msg.includes("timeout") ||
+    msg.includes("fetch") ||
+    msg.includes("network") ||
+    msg.includes("socket") ||
+    msg.includes("econn")
+  );
+}
 
 const round2 = (n: unknown): number =>
   Math.round((Number(n) || 0) * 100) / 100;
@@ -257,7 +277,7 @@ router.post("/ai/labor-estimate", aiLimiter, async (req, res) => {
     );
   } catch (err) {
     req.log.error({ err }, "AI labor estimate failed");
-    if (err instanceof LaborEstimateError) {
+    if (err instanceof LaborEstimateError || isProviderConnectivityError(err)) {
       res.json(localLaborEstimate(input));
       return;
     }

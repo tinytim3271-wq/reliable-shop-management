@@ -147,11 +147,14 @@ async function deliverOwnerEmail(
       subject: input.subject,
       body: input.body,
     });
+    const providerLabel = result.provider === "smtp" ? "SMTP" : "Resend";
     return {
       channel: "email",
       delivered: true,
       failed: false,
-      note: result.id ? `Delivered via Resend (id: ${result.id}).` : "Delivered via Resend.",
+      note: result.id
+        ? `Delivered via ${providerLabel} (id: ${result.id}).`
+        : `Delivered via ${providerLabel}.`,
       toAddress: ownerEmail,
     };
   } catch (err) {

@@ -31,6 +31,7 @@
     "express-session": "^1.19.0",
     "google-auth-library": "^10.7.0",
     "mammoth": "^1.12.0",
+    "nodemailer": "^6.10.1",
     "on-headers": "^1.1.0",
     "openid-client": "^6.8.4",
     "pdf-parse": "^2.4.5",

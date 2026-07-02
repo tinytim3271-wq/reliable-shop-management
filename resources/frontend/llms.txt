@@ -4,9 +4,9 @@
 
 ## Public pages
 
-- [Welcome / Landing](https://reliable-shop-management.replit.app/welcome): Product overview and feature highlights for Reliable Shop Systems.
-- [Book an Appointment](https://reliable-shop-management.replit.app/book): Public appointment booking page for customers of shops running Reliable Shop Systems.
-- [License Store](https://reliable-shop-management.replit.app/store/): Purchase a one-time perpetual license for Reliable Shop Systems.
+- [Welcome / Landing](http://localhost/welcome): Product overview and feature highlights for Reliable Shop Systems.
+- [Book an Appointment](http://localhost/book): Public appointment booking page for customers of shops running Reliable Shop Systems.
+- [License Store](http://localhost/store/): Purchase a one-time perpetual license for Reliable Shop Systems.
 
 ## Do not index
 
