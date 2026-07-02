@@ -1,0 +1,125 @@
+{
+  "timestamp": "2026-07-01T08:12:14",
+  "installer": {
+    "present": true,
+    "path": "C:\\Users\\secon\\Dropbox\\ReliableShopSystemsHub-Install-Package-1.0.0\\win-unpacked\\Output\\ReliableShopSystemsHub-Setup-1.0.0.exe",
+    "size": 180730166,
+    "lastWrite": "2026-07-01T07:57:26",
+    "sha256": "02E59A82B4A8766810F9D23D22CAA933699C89C8279ADF61771294C60F6849DC",
+    "signatureStatus": "NotSigned"
+  },
+  "runtime": {
+    "authLoginStatus": 200,
+    "total": 13,
+    "passed": 13,
+    "failed": 0,
+    "checks": [
+      {
+        "name": "healthz",
+        "pass": true,
+        "status": 200,
+        "detail": null
+      },
+      {
+        "name": "dashboard",
+        "pass": true,
+        "status": 200,
+        "detail": null
+      },
+      {
+        "name": "dashboard_advanced",
+        "pass": true,
+        "status": 200,
+        "detail": null
+      },
+      {
+        "name": "forms_templates",
+        "pass": true,
+        "status": 200,
+        "detail": null
+      },
+      {
+        "name": "forms_preview",
+        "pass": true,
+        "status": 400,
+        "detail": "\r\n{\r\n  \"error\": \"templateId and formType are required\"\r\n}"
+      },
+      {
+        "name": "employees",
+        "pass": true,
+        "status": 200,
+        "detail": null
+      },
+      {
+        "name": "payroll_runs",
+        "pass": true,
+        "status": 200,
+        "detail": null
+      },
+      {
+        "name": "payroll_generate",
+        "pass": true,
+        "status": 400,
+        "detail": "\r\n{\r\n  \"error\": \"Invalid required fields\",\r\n  \"required\": [\r\n    \"payPeriodStart\",\r\n    \"payPeriodEnd\",\r\n    \"checkDate\"\r\n  ]\r\n}"
+      },
+      {
+        "name": "unknown_statuses",
+        "pass": true,
+        "status": 200,
+        "detail": null
+      },
+      {
+        "name": "normalize_statuses",
+        "pass": true,
+        "status": 200,
+        "detail": null
+      },
+      {
+        "name": "ai_conversations",
+        "pass": true,
+        "status": 200,
+        "detail": null
+      },
+      {
+        "name": "ai_assistant",
+        "pass": true,
+        "status": 200,
+        "detail": null
+      },
+      {
+        "name": "ai_memories",
+        "pass": true,
+        "status": 200,
+        "detail": null
+      }
+    ]
+  },
+  "offlineAi": {
+    "providerBaseUrl": "http://127.0.0.1:59999/v1",
+    "expectedBehavior": "Use local fallback responses when provider is unreachable",
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "checks": [
+      {
+        "name": "assistant_offline",
+        "pass": true,
+        "status": 200,
+        "detail": null
+      },
+      {
+        "name": "diagnose_offline",
+        "pass": true,
+        "status": 200,
+        "detail": null
+      },
+      {
+        "name": "labor_estimate_offline",
+        "pass": true,
+        "status": 200,
+        "detail": null
+      }
+    ]
+  },
+  "publishReady": true
+}

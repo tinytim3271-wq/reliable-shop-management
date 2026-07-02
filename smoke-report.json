@@ -1,0 +1,146 @@
+{
+  "summary": {
+    "total": 17,
+    "passed": 17,
+    "failed": 0,
+    "timestamp": "2026-07-01T05:23:58"
+  },
+  "results": [
+    {
+      "name": "Health",
+      "method": "GET",
+      "path": "/api/healthz",
+      "status": 200,
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Auth Needs Setup",
+      "method": "GET",
+      "path": "/api/auth/needs-setup",
+      "status": 200,
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "License Status",
+      "method": "GET",
+      "path": "/api/license/status",
+      "status": 401,
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Dashboard Page",
+      "method": "GET",
+      "path": "/dashboard",
+      "status": 200,
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Work Orders",
+      "method": "GET",
+      "path": "/api/work-orders",
+      "status": 401,
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Dashboard API",
+      "method": "GET",
+      "path": "/api/reports/dashboard",
+      "status": 401,
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Advanced Dashboard API",
+      "method": "GET",
+      "path": "/api/reports/dashboard/advanced",
+      "status": 401,
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Employees",
+      "method": "GET",
+      "path": "/api/employees",
+      "status": 401,
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Payroll Runs",
+      "method": "GET",
+      "path": "/api/payroll/runs",
+      "status": 401,
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Payroll Generate",
+      "method": "POST",
+      "path": "/api/payroll/generate",
+      "status": 401,
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Forms Templates",
+      "method": "GET",
+      "path": "/api/forms/templates",
+      "status": 401,
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Forms Preview",
+      "method": "POST",
+      "path": "/api/forms/preview",
+      "status": 401,
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI Labor Estimate",
+      "method": "POST",
+      "path": "/api/ai/labor-estimate",
+      "status": 401,
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI Diagnose",
+      "method": "POST",
+      "path": "/api/ai/diagnose",
+      "status": 401,
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI Assistant",
+      "method": "POST",
+      "path": "/api/ai/assistant",
+      "status": 401,
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Unknown Statuses",
+      "method": "GET",
+      "path": "/api/work-orders/admin/unknown-statuses",
+      "status": 401,
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Normalize Statuses DryRun",
+      "method": "POST",
+      "path": "/api/work-orders/admin/normalize-statuses?dryRun=true",
+      "status": 401,
+      "pass": true,
+      "detail": null
+    }
+  ]
+}
