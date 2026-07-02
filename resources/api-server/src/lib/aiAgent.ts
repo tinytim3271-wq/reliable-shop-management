@@ -9,7 +9,6 @@ import {
   type AiToolCall,
   type AiMessage,
 } from "@workspace/db";
-import { openai } from "@workspace/integrations-openai-ai-server";
 import type OpenAI from "openai";
 import type { PermissionKey } from "./auth";
 import { logger } from "./logger";
@@ -36,6 +35,11 @@ const LOOP_CAP = 8;
 const TOOL_RESULT_MAX = 6000;
 // Cap the rendered memory block injected into the system prompt.
 const MEMORY_CHARS_MAX = 2000;
+
+async function getOpenAiClient() {
+  const mod = await import("@workspace/integrations-openai-ai-server");
+  return mod.openai;
+}
 
 type ChatMessage = OpenAI.Chat.Completions.ChatCompletionMessageParam;
 
@@ -1055,6 +1059,12 @@ async function runLoop(
   attachmentManifest: string[] = [],
 ): Promise<AgentTurnResult> {
   const tools = getToolSpecs(ctx);
+  let openai: Awaited<ReturnType<typeof getOpenAiClient>>;
+  try {
+    openai = await getOpenAiClient();
+  } catch {
+    throw new AgentError(502, "The AI provider failed to respond.");
+  }
 
   // The latest client action requested by a read tool this turn (navigate or
   // print). Carried across loop iterations and attached to the final reply so

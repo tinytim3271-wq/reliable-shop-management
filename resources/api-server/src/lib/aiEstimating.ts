@@ -1,5 +1,4 @@
 import { db, shopSettingsTable } from "@workspace/db";
-import { openai } from "@workspace/integrations-openai-ai-server";
 import { round2 } from "./ledger";
 
 const MODEL = "gpt-5.4";
@@ -59,6 +58,11 @@ export interface LaborEstimateResult {
 // this to a 502 / generic tool error rather than leaking provider internals.
 export class LaborEstimateError extends Error {}
 
+async function getOpenAiClient() {
+  const mod = await import("@workspace/integrations-openai-ai-server");
+  return mod.openai;
+}
+
 // Core labor-estimate logic shared by the POST /ai/labor-estimate route and the
 // AI agent's suggestEstimateLineItems tool. Resolves the labor rate from shop
 // settings when not supplied, asks the model for a structured estimate, and
@@ -84,6 +88,7 @@ export async function runLaborEstimate(
 
   let completion;
   try {
+    const openai = await getOpenAiClient();
     completion = await openai.chat.completions.create(
       {
         model: MODEL,

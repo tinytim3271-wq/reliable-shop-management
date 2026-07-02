@@ -8,7 +8,6 @@ import {
   AiAssistantBody,
   AiAssistantResponse,
 } from "@workspace/api-zod";
-import { openai } from "@workspace/integrations-openai-ai-server";
 import {
   runLaborEstimate,
   vehicleLine,
@@ -40,6 +39,11 @@ const ASSISTANT_DISCLAIMER =
   "AI-generated guidance. Verify against service information and proper testing before performing any repair.";
 const OFFLINE_ASSISTANT_DISCLAIMER =
   "Offline assistant mode. Guidance is generated locally with rule-based logic and should be verified by a qualified technician.";
+
+async function getOpenAiClient() {
+  const mod = await import("@workspace/integrations-openai-ai-server");
+  return mod.openai;
+}
 
 function isProviderConnectivityError(err: unknown): boolean {
   const msg =
@@ -318,6 +322,7 @@ router.post("/ai/diagnose", aiLimiter, async (req, res) => {
     .join("\n");
 
   try {
+    const openai = await getOpenAiClient();
     const completion = await openai.chat.completions.create(
       {
         model: MODEL,
@@ -518,6 +523,7 @@ router.post("/ai/assistant", aiLimiter, async (req, res) => {
   ];
 
   try {
+    const openai = await getOpenAiClient();
     const completion = await openai.chat.completions.create(
       {
         model: MODEL,
