@@ -1,0 +1,13 @@
+{
+  "name": "@workspace/desktop-host",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Electron Windows host that packages Reliable Shop Systems as an offline, LAN-serving shop hub (frontend + api-server + embedded PGlite + local file storage).",
+  "author": "Reliable Shop Systems",
+  "packageManager": "pnpm@11.7.0",
+  "license": "UNLICENSED",
+  "main": "dist/main.js",
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  }
+}
