@@ -33,14 +33,10 @@ import smsConsentEventsRouter from "./smsConsentEvents";
 import aiRouter from "./ai";
 import aiAgentRouter from "./aiAgent";
 import aiVoiceRouter from "./aiVoice";
-import licenseRouter from "./license";
-import adminStoreRouter from "./adminStore";
 import publicRouter from "./public";
 import portalRouter from "./portal";
-import storeRouter from "./store";
 import twilioInboundRouter from "./twilioInbound";
 import qboRouter, { qboCallbackRouter } from "./integrations/qbo";
-import { licenseGate } from "../lib/licensing";
 import { runtimeConfig } from "@workspace/db";
 
 const router: IRouter = Router();
@@ -50,28 +46,22 @@ router.use(healthRouter);
 router.use(authRouter);
 
 // Public, unauthenticated surface (shop website + online booking). Mounted
-// before authGate AND licenseGate so anonymous customers can reach it; it
+// before authGate so anonymous customers can reach it; it
 // carries its own per-IP rate limiting and never exposes customer PII.
 router.use(publicRouter);
 
 // Public customer portal (per-record opaque tokens). Also mounted before
-// authGate/licenseGate; the token itself is the bearer credential and the
+// authGate; the token itself is the bearer credential and the
 // router enforces its own rate limiting.
 router.use(portalRouter);
 
-// Public inbound SMS webhook (two-way texting). Mounted before authGate AND
-// licenseGate because the caller is Twilio, not a staff session; it
+// Public inbound SMS webhook (two-way texting). Mounted before authGate because
+// the caller is Twilio, not a staff session; it
 // authenticates by verifying the X-Twilio-Signature against the account auth
 // token, stays inert when Twilio is not connected, and rate-limits per IP.
 router.use(twilioInboundRouter);
 
-// Public license storefront (catalog, checkout, order lookup). Mounted before
-// authGate AND licenseGate so anonymous buyers can purchase; it carries its own
-// per-IP rate limiting and sources all prices/entitlements server-side. Skipped
-// in desktop mode: the offline hub has no Stripe and sells no licenses itself.
-if (!runtimeConfig.isDesktop) {
-  router.use(storeRouter);
-}
+// Public license storefront removed; Twilio inbound is the last public router.
 
 // QuickBooks OAuth redirect callback is public: Intuit redirects the owner's
 // browser here with a code + the state we minted. It validates/consumes that
@@ -80,14 +70,6 @@ router.use(qboCallbackRouter);
 
 // Everything below this gate requires a valid session + the right permission.
 router.use(authGate);
-
-// License endpoints sit above the device gate so activation/status/validation
-// stay reachable before a device is registered.
-router.use(licenseRouter);
-
-// Once a license is provisioned, every data route below requires a registered
-// device token. Unprovisioned = no-op (the app runs freely until a key issues).
-router.use(licenseGate);
 
 router.use(usersRouter);
 router.use(mechanicsRouter);
@@ -122,6 +104,5 @@ router.use(aiRouter);
 router.use(aiAgentRouter);
 router.use(aiVoiceRouter);
 router.use(qboRouter);
-router.use(adminStoreRouter);
 
 export default router;

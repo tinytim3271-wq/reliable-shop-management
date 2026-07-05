@@ -307,18 +307,6 @@ export const authGate: RequestHandler = async (req, res, next) => {
       .json({ error: "You do not have permission to access this resource" });
     return;
   }
-  // License activation/status/validation must be reachable by any authenticated
-  // staff member, even before this device is registered. The admin-only license
-  // management endpoints (/license, /license/issue, /license/devices/:id/...,
-  // DELETE /license/:id) stay unmapped and fall through to default-deny.
-  if (
-    req.path === "/license/status" ||
-    req.path === "/license/activate" ||
-    req.path === "/license/validate"
-  ) {
-    next();
-    return;
-  }
   // The voice/text AI agent is reachable by any authenticated staff member: the
   // agent enforces per-tool module permissions internally (fail-closed), and
   // conversation/memory access is scoped to the current user inside the handlers.

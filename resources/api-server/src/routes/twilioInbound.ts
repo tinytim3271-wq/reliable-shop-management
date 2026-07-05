@@ -6,7 +6,7 @@ import { recordInboundSms } from "../lib/messaging";
 
 // Public, unauthenticated inbound SMS webhook (two-way texting). Twilio POSTs an
 // application/x-www-form-urlencoded body here whenever a customer replies to one
-// of the shop's texts. This router is mounted BEFORE authGate/licenseGate (the
+// of the shop's texts. This router is mounted BEFORE authGate (the
 // caller is Twilio, not a logged-in staff user), so it authenticates the request
 // by recomputing the X-Twilio-Signature against the account auth token.
 //
