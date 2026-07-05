@@ -25,7 +25,7 @@ import {
 } from "../lib/messaging";
 
 // Public, unauthenticated surface (M3): the shop's website data + online
-// booking. Every handler here is reachable before authGate and licenseGate, so
+// booking. Every handler here is reachable before authGate, so
 // the router enforces its own per-IP rate limiting and exposes ZERO customer
 // PII — availability is computed PII-free and booking only ever echoes back the
 // caller's own submitted details.

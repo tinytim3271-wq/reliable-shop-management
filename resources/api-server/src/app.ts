@@ -4,7 +4,6 @@ import cors from "cors";
 import session from "express-session";
 import cookieParser from "cookie-parser";
 import pinoHttp from "pino-http";
-import { rateLimit } from "express-rate-limit";
 import { runtimeConfig } from "@workspace/db";
 import router from "./routes";
 import devGateRouter from "./routes/devGate";
@@ -12,8 +11,6 @@ import { devGate, isDevGateEnabled } from "./lib/devGate";
 import { createSessionStore } from "./lib/sessionStore";
 import { resolveSessionSecret } from "./lib/sessionSecret";
 import { logger } from "./lib/logger";
-import { WebhookHandlers } from "./webhookHandlers";
-import { DEVICE_TOKEN_HEADER } from "./lib/licensing";
 import {
   COMPANION_MARKER_HEADER,
   COMPANION_ORIGINS,
@@ -109,53 +106,10 @@ const desktopCors = cors({
     "Content-Type",
     "Accept",
     SESSION_ID_HEADER,
-    DEVICE_TOKEN_HEADER,
     COMPANION_MARKER_HEADER,
   ],
 });
 app.use(runtimeConfig.isDesktop ? desktopCors : cors());
-
-// Stripe webhook: registered with the raw body parser and BEFORE
-// express.json() so signature verification sees the exact bytes Stripe signed.
-// It intentionally bypasses the session/auth/license gates — Stripe is an
-// unauthenticated caller that authenticates itself with the signature header.
-// Skipped entirely in desktop mode, which is offline and has no Stripe.
-if (!runtimeConfig.isDesktop) {
-  // Rate-limit the unauthenticated webhook endpoint. Stripe sends at most a
-  // handful of events per payment, so a generous ceiling of 200 per 15 minutes
-  // per IP comfortably covers every legitimate Stripe source address while
-  // preventing a bot flood from driving repeated outbound credential fetches
-  // or exhausting worker capacity before the signature check even runs.
-  const webhookLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000,
-    limit: 200,
-    standardHeaders: "draft-8",
-    legacyHeaders: false,
-    message: { error: "Too many requests." },
-  });
-
-  app.post(
-    "/api/stripe/webhook",
-    webhookLimiter,
-    express.raw({ type: "application/json" }),
-    async (req, res) => {
-      const signature = req.headers["stripe-signature"];
-      if (!signature) {
-        res.status(400).json({ error: "Missing stripe-signature" });
-        return;
-      }
-      const sig = (Array.isArray(signature) ? signature[0] : signature) ?? "";
-      try {
-        await WebhookHandlers.processWebhook(req.body as Buffer, sig);
-        res.status(200).json({ received: true });
-      } catch (err) {
-        // Return 4xx so Stripe retries transient failures; never leak internals.
-        req.log.error({ err }, "Stripe webhook processing failed");
-        res.status(400).json({ error: "Webhook processing error" });
-      }
-    },
-  );
-}
 
 app.use(express.json({ limit: "100kb" }));
 app.use(express.urlencoded({ extended: true, limit: "100kb" }));

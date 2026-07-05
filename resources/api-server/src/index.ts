@@ -4,9 +4,7 @@ import app from "./app";
 import { logger } from "./lib/logger";
 import { runStartupUploadCleanup, runOrphanReconciliation } from "./lib/objectStorage";
 import { migrateLegacyInspectionPhotos } from "./lib/migrateInspectionPhotos";
-import { runMigrations } from "stripe-replit-sync";
 import { logFirstRunPosture } from "./lib/setupGuard";
-import { getStripeSync } from "./stripeClient";
 import { runQboRetrySweep } from "./lib/qboSync";
 
 // How often the background sweep re-attempts failed QBO sync records. The sweep
@@ -30,42 +28,6 @@ function startQboRetryScheduler(): void {
   const timer = setInterval(tick, QBO_RETRY_SWEEP_INTERVAL_MS);
   // Don't let the recurring timer keep the process alive on shutdown.
   timer.unref();
-}
-
-// Best-effort Stripe bootstrap. This api-server backs BOTH the shop app and the
-// public license storefront, so a missing Stripe connection or a Stripe/network
-// outage must NEVER crash startup or delay app.listen. Every failure is caught
-// and logged; the app keeps serving (the storefront simply shows no catalog).
-async function initStripe(): Promise<void> {
-  const databaseUrl = process.env["DATABASE_URL"];
-  if (!databaseUrl) {
-    logger.warn("Skipping Stripe init: DATABASE_URL not set");
-    return;
-  }
-  try {
-    // 1. Create/upgrade the `stripe` schema (idempotent, safe every boot).
-    await runMigrations({ databaseUrl });
-    // 2. StripeSync must be constructed AFTER migrations run.
-    const stripeSync = await getStripeSync();
-    // 3. Register (or reuse) the managed webhook pointing at this deployment.
-    const domain = process.env["REPLIT_DOMAINS"]?.split(",")[0];
-    if (domain) {
-      const webhook = await stripeSync.findOrCreateManagedWebhook(
-        `https://${domain}/api/stripe/webhook`,
-      );
-      logger.info({ webhookUrl: webhook.url }, "Stripe managed webhook ready");
-    } else {
-      logger.warn("REPLIT_DOMAINS not set; skipped Stripe webhook registration");
-    }
-    // 4. Backfill existing products/prices into the local stripe schema.
-    await stripeSync.syncBackfill();
-    logger.info("Stripe data synced");
-  } catch (err) {
-    logger.error(
-      { err },
-      "Stripe initialization failed; continuing without Stripe",
-    );
-  }
 }
 
 const rawPort = process.env["PORT"];
@@ -118,14 +80,6 @@ const onListen = (err?: Error) => {
   // as <img> tags in item notes into the tracked photoUrls array so they can be
   // managed (removed) and freed from storage like every other photo.
   void migrateLegacyInspectionPhotos();
-
-  // Non-blocking, non-fatal: set up the Stripe schema, managed webhook, and data
-  // backfill for the public license storefront. Wrapped so a Stripe outage never
-  // crashes the server that also backs the shop app. Skipped entirely in desktop
-  // mode, which is offline and has no storefront.
-  if (!runtimeConfig.isDesktop) {
-    void initStripe();
-  }
 
   // Non-blocking: periodically re-attempt failed QBO sync records so transient
   // failures heal without manual intervention. Self-guards via isQboReady, so it

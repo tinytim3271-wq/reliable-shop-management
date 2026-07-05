@@ -24,7 +24,7 @@ import {
 
 // Public, unauthenticated customer portal (M4): a customer holding an opaque
 // per-record token can view their own estimate/invoice and approve/decline an
-// estimate. Mounted before authGate and licenseGate, so this router carries its
+// estimate. Mounted before authGate, so this router carries its
 // own per-IP rate limiting. Unknown/expired/revoked tokens always collapse to a
 // single uniform 404 so the surface cannot be used to enumerate records.
 
