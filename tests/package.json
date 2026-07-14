@@ -1,0 +1,12 @@
+{
+  "name": "reliable-shop-management-phase3",
+  "private": true,
+  "version": "1.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "phase3:baseline": "node run-phase3-baseline.js",
+    "phase3:load": "node phase3-load-baseline.js",
+    "phase3:security": "node phase3-security-baseline.js",
+    "phase3:package-smoke": "node phase3-package-smoke.js"
+  }
+}

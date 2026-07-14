@@ -1,3 +1,6 @@
 node_modules/
 dist/
 *.tgz
+tests/PHASE_3_BASELINE_REPORT.md
+tests/PHASE_3_BASELINE_HISTORY.json
+tests/PHASE_3_PACKAGE_SMOKE_REPORT.md

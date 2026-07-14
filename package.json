@@ -6,7 +6,11 @@
   "scripts": {
     "test": "npm run build",
     "build": "tsc -p tsconfig.json",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "phase3:baseline": "node tests/run-phase3-baseline.js",
+    "phase3:load": "node tests/phase3-load-baseline.js",
+    "phase3:security": "node tests/phase3-security-baseline.js",
+    "phase3:package-smoke": "node tests/phase3-package-smoke.js"
   },
   "repository": {
     "type": "git",
