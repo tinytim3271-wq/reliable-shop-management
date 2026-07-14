@@ -1,0 +1,376 @@
+name: Phase 3 Quality
+
+permissions:
+  contents: read
+  pull-requests: write
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'tests/**'
+      - '.github/workflows/phase3-quality.yml'
+
+jobs:
+  phase3-baseline:
+    name: Phase 3 Baseline
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tests
+    env:
+      API_URL: ${{ vars.PHASE3_API_URL || 'http://localhost:3000' }}
+      TEST_ADVISOR_EMAIL: ${{ vars.PHASE3_TEST_ADVISOR_EMAIL || 'test-advisor@shopsuite.local' }}
+      TEST_ADVISOR_PASSWORD: ${{ secrets.PHASE3_TEST_ADVISOR_PASSWORD || 'Test@123456' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: tests/package-lock.json
+
+      - name: Install test dependencies
+        run: npm ci
+
+      - name: Run baseline suite
+        id: baseline
+        continue-on-error: true
+        run: npm run phase3:baseline
+
+      - name: Upload baseline report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase3-baseline-report
+          path: tests/PHASE_3_BASELINE_REPORT.md
+          if-no-files-found: warn
+
+      - name: Upload baseline history
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase3-baseline-history
+          path: tests/PHASE_3_BASELINE_HISTORY.json
+          if-no-files-found: warn
+
+      - name: Append baseline summary
+        if: always()
+        run: |
+          echo "## Phase 3 Baseline" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f PHASE_3_BASELINE_REPORT.md ]; then
+            echo "Baseline report generated successfully." >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            node -e "
+              const fs = require('fs');
+              const report = fs.readFileSync('PHASE_3_BASELINE_REPORT.md', 'utf8');
+              const lines = report.split(/\r?\n/).slice(0, 24).join('\n');
+              fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, lines + '\n\n');
+            "
+          else
+            echo "Baseline report file not found." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Fail when baseline failed
+        if: steps.baseline.outcome == 'failure'
+        run: exit 1
+
+  k6-load:
+    name: k6 Load Scenarios
+    runs-on: ubuntu-latest
+    needs: phase3-baseline
+    env:
+      API_URL: ${{ vars.PHASE3_API_URL || 'http://localhost:3000' }}
+      TEST_ADVISOR_EMAIL: ${{ vars.PHASE3_TEST_ADVISOR_EMAIL || 'test-advisor@shopsuite.local' }}
+      TEST_ADVISOR_PASSWORD: ${{ secrets.PHASE3_TEST_ADVISOR_PASSWORD || 'Test@123456' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Download baseline history artifact
+        if: always()
+        uses: actions/download-artifact@v4
+        with:
+          name: phase3-baseline-history
+          path: tests
+
+      - name: Run k6 core load test
+        id: k6_core
+        continue-on-error: true
+        run: k6 run tests/k6/phase3-load.js --summary-export tests/k6-summary.json
+
+      - name: Run k6 authenticated workorder load test
+        id: k6_auth
+        continue-on-error: true
+        run: k6 run tests/k6/phase3-auth-workorder.js --summary-export tests/k6-auth-summary.json
+
+      - name: Upload k6 summaries
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase3-k6-summaries
+          path: |
+            tests/k6-summary.json
+            tests/k6-auth-summary.json
+          if-no-files-found: warn
+
+      - name: Append k6 summary
+        if: always()
+        run: |
+          echo "## k6 Load Summary" >> "$GITHUB_STEP_SUMMARY"
+          node -e "
+            const fs = require('fs');
+            function readMetrics(file) {
+              if (!fs.existsSync(file)) {
+                return null;
+              }
+              const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+              const m = data.metrics || {};
+              return {
+                p95: m.http_req_duration?.values?.['p(95)'],
+                failRate: m.http_req_failed?.values?.rate,
+                checksRate: m.checks?.values?.rate,
+              };
+            }
+
+            function buildBaselineTrendTable(historyPath) {
+              if (!fs.existsSync(historyPath)) {
+                return 'History file not found; trend delta unavailable.';
+              }
+
+              let history;
+              try {
+                history = JSON.parse(fs.readFileSync(historyPath, 'utf8'));
+              } catch {
+                return 'History file unreadable; trend delta unavailable.';
+              }
+
+              if (!Array.isArray(history) || history.length === 0) {
+                return 'History is empty; trend delta unavailable.';
+              }
+
+              const current = history[history.length - 1];
+              const previous = history.length > 1 ? history[history.length - 2] : null;
+
+              function scenarioDeltaRow(name) {
+                const cur = current?.load?.summary?.[name];
+                const prev = previous?.load?.summary?.[name];
+
+                const curP95 = Number(cur?.p95Ms ?? NaN);
+                const prevP95 = Number(prev?.p95Ms ?? NaN);
+
+                const curFailRate = Number.isFinite(Number(cur?.successRate))
+                  ? 1 - Number(cur.successRate) / 100
+                  : NaN;
+                const prevFailRate = Number.isFinite(Number(prev?.successRate))
+                  ? 1 - Number(prev.successRate) / 100
+                  : NaN;
+
+                const deltaP95 = Number.isFinite(curP95) && Number.isFinite(prevP95)
+                  ? curP95 - prevP95
+                  : NaN;
+                const deltaFail = Number.isFinite(curFailRate) && Number.isFinite(prevFailRate)
+                  ? curFailRate - prevFailRate
+                  : NaN;
+
+                return `| ${name} | ${Number.isFinite(curP95) ? curP95.toFixed(2) : 'n/a'} | ${Number.isFinite(prevP95) ? prevP95.toFixed(2) : 'n/a'} | ${Number.isFinite(deltaP95) ? (deltaP95 >= 0 ? '+' : '') + deltaP95.toFixed(2) : 'n/a'} | ${Number.isFinite(curFailRate) ? curFailRate.toFixed(4) : 'n/a'} | ${Number.isFinite(prevFailRate) ? prevFailRate.toFixed(4) : 'n/a'} | ${Number.isFinite(deltaFail) ? (deltaFail >= 0 ? '+' : '') + deltaFail.toFixed(4) : 'n/a'} |`;
+              }
+
+              return [
+                '| Baseline Scenario | Current p95 (ms) | Previous p95 (ms) | Delta p95 (ms) | Current Fail Rate | Previous Fail Rate | Delta Fail Rate |',
+                '|---|---:|---:|---:|---:|---:|---:|',
+                scenarioDeltaRow('health'),
+                scenarioDeltaRow('login'),
+              ].join('\\n');
+            }
+
+            const rows = [
+              { label: 'Core scenario', file: 'tests/k6-summary.json', p95Budget: 1500, failBudget: 0.05 },
+              { label: 'Auth workorder scenario', file: 'tests/k6-auth-summary.json', p95Budget: 1200, failBudget: 0.03 },
+            ].map((r) => {
+              const metrics = readMetrics(r.file);
+              if (!metrics) {
+                return `| ${r.label} | n/a | <=${r.p95Budget} | n/a | <${r.failBudget} | FAIL |`;
+              }
+              const p95 = Number(metrics.p95 ?? NaN);
+              const failRate = Number(metrics.failRate ?? NaN);
+              const pass = Number.isFinite(p95) && Number.isFinite(failRate) && p95 <= r.p95Budget && failRate < r.failBudget;
+              return `| ${r.label} | ${Number.isFinite(p95) ? p95.toFixed(2) : 'n/a'} | <=${r.p95Budget} | ${Number.isFinite(failRate) ? failRate.toFixed(4) : 'n/a'} | <${r.failBudget} | ${pass ? 'PASS' : 'FAIL'} |`;
+            });
+
+            const table = [
+              '| Scenario | p95 (ms) | Budget p95 (ms) | Fail Rate | Budget Fail Rate | Result |',
+              '|---|---:|---:|---:|---:|---|',
+              ...rows,
+            ].join('\\n');
+
+            const baselineTrendTable = buildBaselineTrendTable('tests/PHASE_3_BASELINE_HISTORY.json');
+
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, table + '\\n\\n');
+            fs.appendFileSync(
+              process.env.GITHUB_STEP_SUMMARY,
+              '### Baseline Trend Delta (Current vs Previous)\\n\\n' + baselineTrendTable + '\\n\\n'
+            );
+          "
+
+      - name: Update PR comment with Phase 3 results
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            function parseSummary(file, label) {
+              if (!fs.existsSync(file)) {
+                return {
+                  label,
+                  p95: null,
+                  failRate: null,
+                  checksRate: null,
+                  exists: false,
+                };
+              }
+              const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+              const metrics = data.metrics || {};
+              return {
+                label,
+                p95: metrics.http_req_duration?.values?.['p(95)'],
+                failRate: metrics.http_req_failed?.values?.rate,
+                checksRate: metrics.checks?.values?.rate,
+                exists: true,
+              };
+            }
+
+            function toRow(summary, p95Budget, failBudget) {
+              if (!summary.exists) {
+                return `| ${summary.label} | n/a | <=${p95Budget} | n/a | <${failBudget} | FAIL |`;
+              }
+              const p95 = Number(summary.p95 ?? NaN);
+              const failRate = Number(summary.failRate ?? NaN);
+              const pass = Number.isFinite(p95) && Number.isFinite(failRate) && p95 <= p95Budget && failRate < failBudget;
+              return `| ${summary.label} | ${Number.isFinite(p95) ? p95.toFixed(2) : 'n/a'} | <=${p95Budget} | ${Number.isFinite(failRate) ? failRate.toFixed(4) : 'n/a'} | <${failBudget} | ${pass ? 'PASS' : 'FAIL'} |`;
+            }
+
+            function buildBaselineTrendTable(historyPath) {
+              if (!fs.existsSync(historyPath)) {
+                return 'History file not found; trend delta unavailable.';
+              }
+
+              let history;
+              try {
+                history = JSON.parse(fs.readFileSync(historyPath, 'utf8'));
+              } catch {
+                return 'History file unreadable; trend delta unavailable.';
+              }
+
+              if (!Array.isArray(history) || history.length === 0) {
+                return 'History is empty; trend delta unavailable.';
+              }
+
+              const current = history[history.length - 1];
+              const previous = history.length > 1 ? history[history.length - 2] : null;
+
+              function scenarioDeltaRow(name) {
+                const cur = current?.load?.summary?.[name];
+                const prev = previous?.load?.summary?.[name];
+
+                const curP95 = Number(cur?.p95Ms ?? NaN);
+                const prevP95 = Number(prev?.p95Ms ?? NaN);
+
+                const curFailRate = Number.isFinite(Number(cur?.successRate))
+                  ? 1 - Number(cur.successRate) / 100
+                  : NaN;
+                const prevFailRate = Number.isFinite(Number(prev?.successRate))
+                  ? 1 - Number(prev.successRate) / 100
+                  : NaN;
+
+                const deltaP95 = Number.isFinite(curP95) && Number.isFinite(prevP95)
+                  ? curP95 - prevP95
+                  : NaN;
+                const deltaFail = Number.isFinite(curFailRate) && Number.isFinite(prevFailRate)
+                  ? curFailRate - prevFailRate
+                  : NaN;
+
+                return `| ${name} | ${Number.isFinite(curP95) ? curP95.toFixed(2) : 'n/a'} | ${Number.isFinite(prevP95) ? prevP95.toFixed(2) : 'n/a'} | ${Number.isFinite(deltaP95) ? (deltaP95 >= 0 ? '+' : '') + deltaP95.toFixed(2) : 'n/a'} | ${Number.isFinite(curFailRate) ? curFailRate.toFixed(4) : 'n/a'} | ${Number.isFinite(prevFailRate) ? prevFailRate.toFixed(4) : 'n/a'} | ${Number.isFinite(deltaFail) ? (deltaFail >= 0 ? '+' : '') + deltaFail.toFixed(4) : 'n/a'} |`;
+              }
+
+              return [
+                '| Baseline Scenario | Current p95 (ms) | Previous p95 (ms) | Delta p95 (ms) | Current Fail Rate | Previous Fail Rate | Delta Fail Rate |',
+                '|---|---:|---:|---:|---:|---:|---:|',
+                scenarioDeltaRow('health'),
+                scenarioDeltaRow('login'),
+              ].join('\n');
+            }
+
+            const marker = '<!-- phase3-quality-report -->';
+            const baselineOutcome = '${{ needs.phase3-baseline.result }}';
+            const k6CoreOutcome = '${{ steps.k6_core.outcome }}';
+            const k6AuthOutcome = '${{ steps.k6_auth.outcome }}';
+
+            const core = parseSummary('tests/k6-summary.json', 'Core scenario');
+            const auth = parseSummary('tests/k6-auth-summary.json', 'Auth workorder scenario');
+
+            const table = [
+              '| Scenario | p95 (ms) | Budget p95 (ms) | Fail Rate | Budget Fail Rate | Result |',
+              '|---|---:|---:|---:|---:|---|',
+              toRow(core, 1500, 0.05),
+              toRow(auth, 1200, 0.03),
+            ].join('\n');
+
+            const baselineTrendTable = buildBaselineTrendTable('tests/PHASE_3_BASELINE_HISTORY.json');
+
+            const body = [
+              marker,
+              '## Phase 3 Quality Report',
+              '',
+              `- Baseline job: ${baselineOutcome}`,
+              `- k6 core scenario: ${k6CoreOutcome}`,
+              `- k6 auth workorder scenario: ${k6AuthOutcome}`,
+              '',
+              table,
+              '',
+              '### Baseline Trend Delta (Current vs Previous)',
+              '',
+              baselineTrendTable,
+              '',
+              'Artifacts:',
+              '- phase3-baseline-report',
+              '- phase3-baseline-history',
+              '- phase3-k6-summaries',
+            ].join('\n');
+
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner,
+              repo,
+              issue_number,
+              per_page: 100,
+            });
+            const existing = comments.find((c) => c.body && c.body.includes(marker));
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body,
+              });
+            }
+
+      - name: Fail when k6 scenarios failed
+        if: steps.k6_core.outcome == 'failure' || steps.k6_auth.outcome == 'failure'
+        run: exit 1
