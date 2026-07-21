@@ -1,15 +1,6 @@
 node_modules/
 dist/
 *.tgz
-
-# Packaged Electron app build output / runtime binaries (not project source)
-resources/
-Output/
-locales/
-*.pak
-*.dll
-*.dat
-*.bin
-app.asar
-elevate.exe
-vk_swiftshader_icd.json
+tests/PHASE_3_BASELINE_REPORT.md
+tests/PHASE_3_BASELINE_HISTORY.json
+tests/PHASE_3_PACKAGE_SMOKE_REPORT.md
