@@ -1,5 +1,10 @@
 {
   "dependencies": {
+    "create-cloudflare": "^2.72.13",
+    "posthog-node": "^5.52.4",
     "workbox-precaching": "^7.4.1"
+  },
+  "devDependencies": {
+    "wrangler": "^4.141.0"
   }
 }

@@ -1,2 +1,3 @@
-2026/07/02-16:00:32.762 2cac Creating DB C:\Users\secon\AppData\Roaming\Code\shared_proto_db since it was missing.
-2026/07/02-16:00:32.770 2cac Reusing MANIFEST C:\Users\secon\AppData\Roaming\Code\shared_proto_db/MANIFEST-000001
+2026/08/20-06:25:47.685 4da0 Reusing MANIFEST C:\Users\secon\AppData\Roaming\Code\shared_proto_db/MANIFEST-000001
+2026/08/20-06:25:47.687 4da0 Recovering log #3
+2026/08/20-06:25:47.688 4da0 Reusing old log C:\Users\secon\AppData\Roaming\Code\shared_proto_db/000003.log 

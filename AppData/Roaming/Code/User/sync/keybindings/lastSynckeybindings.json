@@ -1,1 +1,1 @@
-{"ref":"0","syncData":null}
+{"ref":"24584a4c-bf77-4f37-bcc4-9d7279477921","syncData":{"version":2,"machineId":"64801188-8f35-44f7-87f5-ab5e8cc2f9e1","content":"{\"windows\":\"[\\n    {\\n        \\\"key\\\": \\\"shift+enter\\\",\\n        \\\"command\\\": \\\"workbench.action.terminal.sendSequence\\\",\\n        \\\"when\\\": \\\"terminalFocus\\\",\\n        \\\"args\\\": {\\n            \\\"text\\\": \\\"\\\\u001b\\\\r\\\"\\n        }\\n    }\\n]\"}"}}
