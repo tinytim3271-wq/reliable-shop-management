@@ -1,0 +1,672 @@
+{
+  "version": 3,
+  "skills": {
+    "writing-plans": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/obra/superpowers.git",
+      "skillPath": "skills/writing-plans/SKILL.md",
+      "skillFolderHash": "ab2adb78b24572c2a80c18158ad699ab065c73df",
+      "installedAt": "2026-07-04T00:40:10.497Z",
+      "updatedAt": "2026-07-04T00:40:10.497Z"
+    },
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/skills.git",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "skillFolderHash": "76a98a285cb0434f3d39e1a873823556330e398b",
+      "installedAt": "2026-08-19T11:44:47.780Z",
+      "updatedAt": "2026-08-19T11:44:47.780Z"
+    },
+    "firecrawl": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "core\\firecrawl\\SKILL.md",
+      "skillFolderHash": "0d0579748a827ceba2f35247df3101066628198f",
+      "installedAt": "2026-08-28T12:36:56.000Z",
+      "updatedAt": "2026-08-28T12:36:56.000Z"
+    },
+    "firecrawl-agent": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "core\\firecrawl-agent\\SKILL.md",
+      "skillFolderHash": "0409071940adc153dbba9edb91e569a8d2e8dafd",
+      "installedAt": "2026-08-28T12:36:56.000Z",
+      "updatedAt": "2026-08-28T12:36:56.000Z"
+    },
+    "firecrawl-crawl": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "core\\firecrawl-crawl\\SKILL.md",
+      "skillFolderHash": "93a7e378b15dd529a041d13a6deaf7417ee8ee74",
+      "installedAt": "2026-08-28T12:36:56.000Z",
+      "updatedAt": "2026-08-28T12:36:56.000Z"
+    },
+    "firecrawl-developer-index": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "core\\firecrawl-developer-index\\SKILL.md",
+      "skillFolderHash": "f530e63d1a0ab9dc231ed961e260447d0042da7b",
+      "installedAt": "2026-08-28T12:36:56.000Z",
+      "updatedAt": "2026-08-28T12:36:56.000Z"
+    },
+    "firecrawl-download": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "core\\firecrawl-download\\SKILL.md",
+      "skillFolderHash": "3a26d2204667666a765d7e1e6581239dd545b2ab",
+      "installedAt": "2026-08-28T12:36:56.000Z",
+      "updatedAt": "2026-08-28T12:36:56.000Z"
+    },
+    "firecrawl-interact": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "core\\firecrawl-interact\\SKILL.md",
+      "skillFolderHash": "a66124db00aec249cab08fcd40c1273a276cee9b",
+      "installedAt": "2026-08-28T12:36:56.000Z",
+      "updatedAt": "2026-08-28T12:36:56.000Z"
+    },
+    "firecrawl-map": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "core\\firecrawl-map\\SKILL.md",
+      "skillFolderHash": "2fcad909687e5af57899819f75641d2a37665412",
+      "installedAt": "2026-08-28T12:36:56.000Z",
+      "updatedAt": "2026-08-28T12:36:56.000Z"
+    },
+    "firecrawl-monitor": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "core\\firecrawl-monitor\\SKILL.md",
+      "skillFolderHash": "973f9b9747feefe39090de1cdca0984a81ebe856",
+      "installedAt": "2026-08-28T12:36:56.000Z",
+      "updatedAt": "2026-08-28T12:36:56.000Z"
+    },
+    "firecrawl-parse": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "core\\firecrawl-parse\\SKILL.md",
+      "skillFolderHash": "58809c072a7d8a049e5b3b5f9f989c904313d7f6",
+      "installedAt": "2026-08-28T12:36:56.000Z",
+      "updatedAt": "2026-08-28T12:36:56.000Z"
+    },
+    "firecrawl-research-index": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "core\\firecrawl-research-index\\SKILL.md",
+      "skillFolderHash": "0ae31d4d034e7430e7cfb6bb004c9adefdc97ffb",
+      "installedAt": "2026-08-28T12:36:56.000Z",
+      "updatedAt": "2026-08-28T12:36:56.000Z"
+    },
+    "firecrawl-scrape": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "core\\firecrawl-scrape\\SKILL.md",
+      "skillFolderHash": "d24ffc82620fc4e5a136f798d4f3ae21c7c34d47",
+      "installedAt": "2026-08-28T12:36:56.000Z",
+      "updatedAt": "2026-08-28T12:36:56.000Z"
+    },
+    "firecrawl-search": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "core\\firecrawl-search\\SKILL.md",
+      "skillFolderHash": "d7fdbc05072b981dd9fe04cdf0c0dcad0e6d6fe3",
+      "installedAt": "2026-08-28T12:36:56.000Z",
+      "updatedAt": "2026-08-28T12:36:56.000Z"
+    },
+    "firecrawl-company-directories": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "workflows\\firecrawl-company-directories\\SKILL.md",
+      "skillFolderHash": "8b51ac5d1ceea4221a84a1c2c590c6cfe1d4b1a5",
+      "installedAt": "2026-08-28T12:37:05.382Z",
+      "updatedAt": "2026-08-28T12:37:05.382Z"
+    },
+    "firecrawl-competitive-intel": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "workflows\\firecrawl-competitive-intel\\SKILL.md",
+      "skillFolderHash": "9e35382cba1953129d3e0b25371a2caa0f4a3e06",
+      "installedAt": "2026-08-28T12:37:05.382Z",
+      "updatedAt": "2026-08-28T12:37:05.382Z"
+    },
+    "firecrawl-dashboard-reporting": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "workflows\\firecrawl-dashboard-reporting\\SKILL.md",
+      "skillFolderHash": "e79dedc5d2a6255f4df7f3087d0dd3dd9ff932e8",
+      "installedAt": "2026-08-28T12:37:05.382Z",
+      "updatedAt": "2026-08-28T12:37:05.382Z"
+    },
+    "firecrawl-deep-research": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "workflows\\firecrawl-deep-research\\SKILL.md",
+      "skillFolderHash": "1350ff46474efee99edef97557bccc100aa07dc8",
+      "installedAt": "2026-08-28T12:37:05.382Z",
+      "updatedAt": "2026-08-28T12:37:05.382Z"
+    },
+    "firecrawl-demo-walkthrough": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "workflows\\firecrawl-demo-walkthrough\\SKILL.md",
+      "skillFolderHash": "df476c457ef09cb66c320c4bbda7dd4719a95220",
+      "installedAt": "2026-08-28T12:37:05.382Z",
+      "updatedAt": "2026-08-28T12:37:05.382Z"
+    },
+    "firecrawl-knowledge-base": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "workflows\\firecrawl-knowledge-base\\SKILL.md",
+      "skillFolderHash": "17b1ec94c7b11a6c5038ae2483056ed119791bfd",
+      "installedAt": "2026-08-28T12:37:05.382Z",
+      "updatedAt": "2026-08-28T12:37:05.382Z"
+    },
+    "firecrawl-knowledge-ingest": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "workflows\\firecrawl-knowledge-ingest\\SKILL.md",
+      "skillFolderHash": "9faa5f0081f4e3b6f340f7203311942391ca5bd3",
+      "installedAt": "2026-08-28T12:37:05.382Z",
+      "updatedAt": "2026-08-28T12:37:05.382Z"
+    },
+    "firecrawl-lead-gen": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "workflows\\firecrawl-lead-gen\\SKILL.md",
+      "skillFolderHash": "7e4c0f7b0b38442c307571fe39a6482a49db3bfe",
+      "installedAt": "2026-08-28T12:37:05.382Z",
+      "updatedAt": "2026-08-28T12:37:05.382Z"
+    },
+    "firecrawl-lead-research": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "workflows\\firecrawl-lead-research\\SKILL.md",
+      "skillFolderHash": "bc42746b0696f03188e159c1db727f6a6ef11e0c",
+      "installedAt": "2026-08-28T12:37:05.382Z",
+      "updatedAt": "2026-08-28T12:37:05.382Z"
+    },
+    "firecrawl-market-research": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "workflows\\firecrawl-market-research\\SKILL.md",
+      "skillFolderHash": "7456c19b02781c4d2417c28a60096be63e92cce7",
+      "installedAt": "2026-08-28T12:37:05.382Z",
+      "updatedAt": "2026-08-28T12:37:05.382Z"
+    },
+    "firecrawl-qa": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "workflows\\firecrawl-qa\\SKILL.md",
+      "skillFolderHash": "299ba7c1fc7b78e452b85746a8ed8449a4c03154",
+      "installedAt": "2026-08-28T12:37:05.382Z",
+      "updatedAt": "2026-08-28T12:37:05.382Z"
+    },
+    "firecrawl-research-papers": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "workflows\\firecrawl-research-papers\\SKILL.md",
+      "skillFolderHash": "57b2b90a124850b8ba0e483a2beaf4b22bc802d9",
+      "installedAt": "2026-08-28T12:37:05.382Z",
+      "updatedAt": "2026-08-28T12:37:05.382Z"
+    },
+    "firecrawl-seo-audit": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "workflows\\firecrawl-seo-audit\\SKILL.md",
+      "skillFolderHash": "a7c3b259f9e52abe3ace733f8d459bf087b2f490",
+      "installedAt": "2026-08-28T12:37:05.382Z",
+      "updatedAt": "2026-08-28T12:37:05.382Z"
+    },
+    "firecrawl-shop": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "workflows\\firecrawl-shop\\SKILL.md",
+      "skillFolderHash": "8363bc3434d70f21ed7e62ee5f20930e2b2b0bb4",
+      "installedAt": "2026-08-28T12:37:05.382Z",
+      "updatedAt": "2026-08-28T12:37:05.382Z"
+    },
+    "firecrawl-website-design-clone": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "workflows\\firecrawl-website-design-clone\\SKILL.md",
+      "skillFolderHash": "266be37abf39a7f157e7c80fe3c018e26afeae58",
+      "installedAt": "2026-08-28T12:37:05.382Z",
+      "updatedAt": "2026-08-28T12:37:05.382Z"
+    },
+    "firecrawl-workflows": {
+      "source": "firecrawl/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/firecrawl/skills.git",
+      "skillPath": "workflows\\firecrawl-workflows\\SKILL.md",
+      "skillFolderHash": "e3f9f94c1f17bc5467ad4c212f6541c5c259adce",
+      "installedAt": "2026-08-28T12:37:05.382Z",
+      "updatedAt": "2026-08-28T12:37:05.382Z"
+    },
+    "agents-sdk": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cloudflare/skills.git",
+      "skillPath": "skills/agents-sdk/SKILL.md",
+      "skillFolderHash": "6960162efc4b6fea7bae6963a45527a7783901c2",
+      "installedAt": "2026-09-07T13:49:11.096Z",
+      "updatedAt": "2026-09-09T05:53:41.863Z"
+    },
+    "cloudflare": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cloudflare/skills.git",
+      "skillPath": "skills/cloudflare/SKILL.md",
+      "skillFolderHash": "34386215892a8255fba7112d1a2a3e5ff40150e8",
+      "installedAt": "2026-09-07T13:49:11.114Z",
+      "updatedAt": "2026-09-09T05:53:41.879Z"
+    },
+    "cloudflare-email-service": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cloudflare/skills.git",
+      "skillPath": "skills/cloudflare-email-service/SKILL.md",
+      "skillFolderHash": "8b632c63261e4658200960df9be24080660ab3e3",
+      "installedAt": "2026-09-07T13:49:11.143Z",
+      "updatedAt": "2026-09-09T05:53:41.892Z"
+    },
+    "cloudflare-one": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cloudflare/skills.git",
+      "skillPath": "skills/cloudflare-one/SKILL.md",
+      "skillFolderHash": "a8a51a262e27978faa5bf754d2b3529adcac7008",
+      "installedAt": "2026-09-07T13:49:11.167Z",
+      "updatedAt": "2026-09-09T05:53:41.906Z"
+    },
+    "cloudflare-one-migrations": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cloudflare/skills.git",
+      "skillPath": "skills/cloudflare-one-migrations/SKILL.md",
+      "skillFolderHash": "096965163ff9024abb4f179290fd446249be64e6",
+      "installedAt": "2026-09-07T13:49:11.189Z",
+      "updatedAt": "2026-09-09T05:53:41.919Z"
+    },
+    "durable-objects": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cloudflare/skills.git",
+      "skillPath": "skills/durable-objects/SKILL.md",
+      "skillFolderHash": "ca4497e4bfa069d2d06e14440b78c81eccd8c5f0",
+      "installedAt": "2026-09-07T13:49:11.210Z",
+      "updatedAt": "2026-09-09T05:53:41.935Z"
+    },
+    "nextjs-on-cloudflare": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cloudflare/skills.git",
+      "skillPath": "skills/nextjs-on-cloudflare/SKILL.md",
+      "skillFolderHash": "228295b091bc4908e008988b5350ac40892d78be",
+      "installedAt": "2026-09-07T13:49:11.232Z",
+      "updatedAt": "2026-09-09T05:53:41.949Z"
+    },
+    "sandbox-migrate-to-next": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cloudflare/skills.git",
+      "skillPath": "skills/sandbox-migrate-to-next/SKILL.md",
+      "skillFolderHash": "6537d349eebd2c5737d556eb333b2a1a679ca94d",
+      "installedAt": "2026-09-07T13:49:11.257Z",
+      "updatedAt": "2026-09-09T05:53:41.963Z"
+    },
+    "sandbox-next": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cloudflare/skills.git",
+      "skillPath": "skills/sandbox-next/SKILL.md",
+      "skillFolderHash": "3ef863c36388638fb7823f8735049f8b326f5199",
+      "installedAt": "2026-09-07T13:49:11.278Z",
+      "updatedAt": "2026-09-09T05:53:41.976Z"
+    },
+    "sandbox-stable": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cloudflare/skills.git",
+      "skillPath": "skills/sandbox-stable/SKILL.md",
+      "skillFolderHash": "44b3c4a6c6bad22c10a7c15f5ff9810a62fd45cc",
+      "installedAt": "2026-09-07T13:49:11.301Z",
+      "updatedAt": "2026-09-09T05:53:41.993Z"
+    },
+    "turnstile-spin": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cloudflare/skills.git",
+      "skillPath": "skills/turnstile-spin/SKILL.md",
+      "skillFolderHash": "e7caf01b8e769234af3e3d4750726aac30b4a624",
+      "installedAt": "2026-09-07T13:49:11.327Z",
+      "updatedAt": "2026-09-09T05:53:42.007Z"
+    },
+    "web-perf": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cloudflare/skills.git",
+      "skillPath": "skills/web-perf/SKILL.md",
+      "skillFolderHash": "c4c15a909ae86c00d4fbf841238bbf56eb505ac8",
+      "installedAt": "2026-09-07T13:49:11.355Z",
+      "updatedAt": "2026-09-09T05:53:42.022Z"
+    },
+    "workers-best-practices": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cloudflare/skills.git",
+      "skillPath": "skills/workers-best-practices/SKILL.md",
+      "skillFolderHash": "2b353123539948ca95c757166437c1fc5eefc208",
+      "installedAt": "2026-09-07T13:49:11.379Z",
+      "updatedAt": "2026-09-09T05:53:42.037Z"
+    },
+    "wrangler": {
+      "source": "cloudflare/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cloudflare/skills.git",
+      "skillPath": "skills/wrangler/SKILL.md",
+      "skillFolderHash": "d87d80a0c3f0a3c2d38222b02d459ef85af60320",
+      "installedAt": "2026-09-07T13:49:11.406Z",
+      "updatedAt": "2026-09-09T05:53:42.052Z"
+    },
+    "airunway-aks-setup": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/airunway-aks-setup/SKILL.md",
+      "skillFolderHash": "92ee32d7ae377d718d4c2282c1eb2176a7fd6407",
+      "installedAt": "2026-09-24T19:49:25.529Z",
+      "updatedAt": "2026-09-24T19:49:25.529Z"
+    },
+    "appinsights-instrumentation": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/appinsights-instrumentation/SKILL.md",
+      "skillFolderHash": "c8073c3feba00a1ac15f83a586f85cac7c99721d",
+      "installedAt": "2026-09-24T19:49:25.725Z",
+      "updatedAt": "2026-09-24T19:49:25.725Z"
+    },
+    "azure-ai": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-ai/SKILL.md",
+      "skillFolderHash": "88009b2c4e3acfe43034d75a75b3167c6fa73ffa",
+      "installedAt": "2026-09-24T19:49:25.876Z",
+      "updatedAt": "2026-09-24T19:49:25.876Z"
+    },
+    "azure-aigateway": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-aigateway/SKILL.md",
+      "skillFolderHash": "8529348e07a31f48a46f0345a34fcaae9b27e7d0",
+      "installedAt": "2026-09-24T19:49:26.120Z",
+      "updatedAt": "2026-09-24T19:49:26.120Z"
+    },
+    "azure-app-onboard": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-app-onboard/SKILL.md",
+      "skillFolderHash": "ede02ddb242410a57e50d3a21b06ea3160c84e41",
+      "installedAt": "2026-09-24T19:49:26.465Z",
+      "updatedAt": "2026-09-24T19:49:26.465Z"
+    },
+    "azure-app-onboard-prereq": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-app-onboard-prereq/SKILL.md",
+      "skillFolderHash": "a73ad96de17e0e5fa581e795a328cb9c1c20053f",
+      "installedAt": "2026-09-24T19:49:26.711Z",
+      "updatedAt": "2026-09-24T19:49:26.711Z"
+    },
+    "azure-cloud-migrate": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-cloud-migrate/SKILL.md",
+      "skillFolderHash": "064dc66880cee5694234690f2b9be17e135dd1dd",
+      "installedAt": "2026-09-24T19:49:26.895Z",
+      "updatedAt": "2026-09-24T19:49:26.895Z"
+    },
+    "azure-compliance": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-compliance/SKILL.md",
+      "skillFolderHash": "843820187be92dc9246dc80916270a05c8c38918",
+      "installedAt": "2026-09-24T19:49:27.101Z",
+      "updatedAt": "2026-09-24T19:49:27.101Z"
+    },
+    "azure-compute": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-compute/SKILL.md",
+      "skillFolderHash": "eac48d13e7b19366050bd7a176c7b5189ad34cdb",
+      "installedAt": "2026-09-24T19:49:27.281Z",
+      "updatedAt": "2026-09-24T19:49:27.281Z"
+    },
+    "azure-deploy": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-deploy/SKILL.md",
+      "skillFolderHash": "dcfe1a8570bf8d44a4066e386709b5f492f909e9",
+      "installedAt": "2026-09-24T19:49:27.506Z",
+      "updatedAt": "2026-09-24T19:49:27.506Z"
+    },
+    "azure-diagnostics": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-diagnostics/SKILL.md",
+      "skillFolderHash": "d950817838c0bbeeee2e1248cafabcdf7a939c18",
+      "installedAt": "2026-09-24T19:49:27.744Z",
+      "updatedAt": "2026-09-24T19:49:27.744Z"
+    },
+    "azure-enterprise-infra-planner": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-enterprise-infra-planner/SKILL.md",
+      "skillFolderHash": "01855069f81012840bdc1d2e738e3452143f1939",
+      "installedAt": "2026-09-24T19:49:27.990Z",
+      "updatedAt": "2026-09-24T19:49:27.990Z"
+    },
+    "azure-kubernetes": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-kubernetes/SKILL.md",
+      "skillFolderHash": "153097caa6c857e5f86dcc9b315043e5ef39246a",
+      "installedAt": "2026-09-24T19:49:28.155Z",
+      "updatedAt": "2026-09-24T19:49:28.155Z"
+    },
+    "azure-kusto": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-kusto/SKILL.md",
+      "skillFolderHash": "632436f7c4b5718a1af4391713b877a8dd21ea94",
+      "installedAt": "2026-09-24T19:49:29.279Z",
+      "updatedAt": "2026-09-24T19:49:29.279Z"
+    },
+    "azure-messaging": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-messaging/SKILL.md",
+      "skillFolderHash": "ea4f43fba357f1cdffec81e0db9415da05dea16a",
+      "installedAt": "2026-09-24T19:49:29.464Z",
+      "updatedAt": "2026-09-24T19:49:29.464Z"
+    },
+    "azure-prepare": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-prepare/SKILL.md",
+      "skillFolderHash": "90f3d38158769f159dcb5bbba996ed19ebb28733",
+      "installedAt": "2026-09-24T19:49:29.618Z",
+      "updatedAt": "2026-09-24T19:49:29.618Z"
+    },
+    "azure-quotas": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-quotas/SKILL.md",
+      "skillFolderHash": "a84712b809a10b9584d99b523a74b52526bb2713",
+      "installedAt": "2026-09-24T19:49:29.920Z",
+      "updatedAt": "2026-09-24T19:49:29.920Z"
+    },
+    "azure-reliability": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-reliability/SKILL.md",
+      "skillFolderHash": "cda3cc718514c01d986ba6006ddeec7465579974",
+      "installedAt": "2026-09-24T19:49:30.260Z",
+      "updatedAt": "2026-09-24T19:49:30.260Z"
+    },
+    "azure-resource-lookup": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-resource-lookup/SKILL.md",
+      "skillFolderHash": "ee93e28b19fe1e532a4973439925e27a80ae1812",
+      "installedAt": "2026-09-24T19:49:30.427Z",
+      "updatedAt": "2026-09-24T19:49:30.427Z"
+    },
+    "azure-resource-visualizer": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-resource-visualizer/SKILL.md",
+      "skillFolderHash": "b934bdcfac8dd449fadbf65b9725150169d8bab6",
+      "installedAt": "2026-09-24T19:49:30.584Z",
+      "updatedAt": "2026-09-24T19:49:30.584Z"
+    },
+    "azure-storage": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-storage/SKILL.md",
+      "skillFolderHash": "cc822d42d4781253930cd7f752f657ec07aff1d7",
+      "installedAt": "2026-09-24T19:49:31.275Z",
+      "updatedAt": "2026-09-24T19:49:31.275Z"
+    },
+    "azure-upgrade": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-upgrade/SKILL.md",
+      "skillFolderHash": "a506c3804c11500bede1be1fa0cf3de969f1d36b",
+      "installedAt": "2026-09-24T19:49:31.565Z",
+      "updatedAt": "2026-09-24T19:49:31.565Z"
+    },
+    "azure-validate": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/azure-validate/SKILL.md",
+      "skillFolderHash": "aea575eabf4715a8939bcdfb6f37d42a835c8029",
+      "installedAt": "2026-09-24T19:49:32.006Z",
+      "updatedAt": "2026-09-24T19:49:32.006Z"
+    },
+    "discover-azure-skills": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/discover-azure-skills/SKILL.md",
+      "skillFolderHash": "baf3348531f80582ceb1445357250af80a1aa8c5",
+      "installedAt": "2026-09-24T19:49:32.341Z",
+      "updatedAt": "2026-09-24T19:49:32.341Z"
+    },
+    "entra-agent-id": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/entra-agent-id/SKILL.md",
+      "skillFolderHash": "2757439372801955542e909dc218f74914811203",
+      "installedAt": "2026-09-24T19:49:32.659Z",
+      "updatedAt": "2026-09-24T19:49:32.659Z"
+    },
+    "entra-app-registration": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/entra-app-registration/SKILL.md",
+      "skillFolderHash": "051071c18ecb38347076f857819987e3ec37685e",
+      "installedAt": "2026-09-24T19:49:33.049Z",
+      "updatedAt": "2026-09-24T19:49:33.049Z"
+    },
+    "microsoft-foundry": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/microsoft-foundry/SKILL.md",
+      "skillFolderHash": "96c7952ad179b4c03be3791eeabe7e1b31a85972",
+      "installedAt": "2026-09-24T19:49:33.329Z",
+      "updatedAt": "2026-09-24T19:49:33.329Z"
+    },
+    "python-appservice-deploy": {
+      "source": "microsoft/azure-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/microsoft/azure-skills.git",
+      "skillPath": ".github/plugins/azure-skills/skills/python-appservice-deploy/SKILL.md",
+      "skillFolderHash": "3003f4d14f1e1a63ec94afd28f958560aab4b273",
+      "installedAt": "2026-09-24T19:49:33.655Z",
+      "updatedAt": "2026-09-24T19:49:33.655Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  },
+  "lastSelectedAgents": [
+    "amp",
+    "antigravity",
+    "antigravity-cli",
+    "cline",
+    "codex",
+    "cursor",
+    "deepagents",
+    "gemini-cli",
+    "github-copilot",
+    "kimi-code-cli",
+    "opencode",
+    "warp",
+    "zed",
+    "codestudio"
+  ]
+}
